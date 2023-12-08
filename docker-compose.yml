@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  nest-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo-db
+
+  mongo-db:
+    image: bitnami/mongodb:5.0.17
+    environment:
+      - MONGODB_ROOT_PASSWORD=root_password
+      - MONGODB_DATABASE=nest_app
+    ports:
+      - "27017:27017"
